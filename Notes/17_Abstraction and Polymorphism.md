@@ -48,7 +48,6 @@ class ElectricCar extends Car {
     }
 }
 ```
-*[Source: 31, 36, 42-45]*
 
 #### **B. Interfaces**
 An **Interface** acts as a **"Contract"**. It defines **roles or capabilities** (like `Flyable` or `Runnable`) that unrelated objects can adopt.
@@ -74,7 +73,6 @@ class Bird implements Flyable {
     }
 }
 ```
-*[Source: 48, 57, 58]*
 
 ---
 
@@ -118,7 +116,6 @@ public class Main {
     }
 }
 ```
-*[Source: 73-75]*
 
 ---
 
