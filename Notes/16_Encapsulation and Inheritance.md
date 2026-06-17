@@ -1,74 +1,1113 @@
+# Encapsulation, Access Modifiers, Packages & Inheritance in Java
 
 ---
 
-### **1. Encapsulation: The First Pillar of OOP**
-**Encapsulation** is the process of wrapping data (variables) and behaviors (methods) together into a single unit, similar to how different medicines are enclosed within a single **capsule**.
+# Table of Contents
 
-#### **A. Two Core Principles of Encapsulation**
-1.  **Grouping Data and Behavior:** An object’s data and its behaviors are intrinsic properties that must stay together within a class.
-2.  **Restricting Access:** Developers should not provide **unrestricted access** to data from outside the class.
-
-#### **B. The "Bank Account" Example**
-If a `balance` variable in a `BankAccount` class is public, any user could directly set their balance to a million dollars (e.g., `BA.balance = 1000000;`), which is logically wrong.
-*   **The Solution:** Make the `balance` variable **private** and provide access only through specific behaviors like **`deposit()`** or **`withdraw()`**.
-*   **Benefits of This Approach:** This allows the developer to add **validations** (e.g., checking if an ATM note is real or if the account has enough funds before withdrawing) rather than allowing direct, unmonitored changes to the data.
-
----
-
-### **2. Access Modifiers**
-Access modifiers control **who has access** to a variable, method, constructor, or class. Java provides four types:
-
-| Modifier | Access Level |
-| :--- | :--- |
-| **Private** | Most restricted; accessible **only within the same class**. |
-| **Default** | (No keyword used) Accessible to all classes in the **same package**. |
-| **Protected** | Accessible in the **same package** and by **child (inherited) classes** even in different packages. |
-| **Public** | Least restricted; accessible from **anywhere in the code base**. |
-
-**Root-Level Class Restriction:** A standard root-level class can only be **Public** or **Default**. It cannot be **Private** or **Protected** because it would lack a context (it's not "private" to anything higher).
+1. Encapsulation
+2. Why Encapsulation?
+3. Bank Account Example
+4. Access Modifiers
+5. Packages in Java
+6. Inheritance
+7. Types of Inheritance
+8. Diamond Problem
+9. `super` Keyword
+10. Getters and Setters
+11. Memory & Inheritance Flow
+12. Interview Questions
+13. Quick Revision Sheet
 
 ---
 
-### **3. Java Packages**
-A **package** is essentially a folder used to group similar classes and interfaces together.
+# 1. Encapsulation: First Pillar of OOP
 
-*   **Syntax:** Use the `package` keyword at the very top of the file (e.g., `package college;`).
-*   **Importing:** To use a class from another package, use the `import` keyword followed by the package and class name (e.g., `import school.Student;`).
-*   **Inbuilt Packages:** Java provides several pre-written packages like `java.util` (for collections), `java.lang` (for core strings), and `java.io` (for input/output).
-*   **Internal Logic:** When a file is compiled into **bytecode (.class)**, the JVM loads the specific bytecode of the imported classes from their respective packages.
+## Definition
 
----
+**Encapsulation** is the process of wrapping:
 
-### **4. Inheritance: The "Is-A" Relationship**
-**Inheritance** allows one class to acquire the properties and behaviors of another, representing a real-world **"Is-A" relationship**.
+* Data (Variables)
+* Behavior (Methods)
 
-*   **Example:** A **Car** "is-a" **Vehicle**. A **Medical Student** "is-a" **Student**.
-*   **Keywords:** The keyword **`extends`** is used to create this link (e.g., `class Car extends Vehicle`).
-*   **Hierarchy:** The original class is the **Parent (Super)** class, and the inheriting class is the **Child (Sub)** class.
-*   **Advantage - Code Reusability:** If a `Vehicle` class has a `start()` method, every child class (Car, Bike, Truck) automatically gets that method without needing to rewrite it.
-
-#### **Types of Inheritance**
-1.  **Simple:** One parent and one child.
-2.  **Multi-level:** A chain of inheritance (e.g., Student -> Engineering Student -> CSE Student).
-3.  **Hierarchical:** One parent has multiple child classes (e.g., Student has children Engineering Student and Medical Student).
-4.  **Multiple (NOT supported for classes):** Java does not allow one class to inherit from two parents simultaneously (e.g., `class C extends A, B`) to avoid the **Diamond Problem**.
-
-**The Diamond Problem:** If Parent A and Parent B both have a method called `show()`, and Child C inherits from both, the compiler wouldn't know which version of `show()` to execute, leading to runtime ambiguity.
+into a single unit called a **Class**.
 
 ---
 
-### **5. The `super` Keyword**
-While the `this` keyword refers to the current object, the **`super`** keyword refers to the **parent object**. It has three primary uses:
+## Real-Life Example
 
-1.  **Access Parent Variables:** Useful if both the parent and child have a variable with the same name (e.g., `super.x` refers to the parent’s `x`).
-2.  **Call Parent Methods:** Allows a child to invoke a parent's version of a method.
-3.  **Call Parent Constructor:** Used inside a child constructor to initialize parent fields (e.g., `super(name, age);`).
-    *   **Rule:** The call to `super()` **must be the first statement** in the child constructor.
+Think about a medicine capsule:
+
+```text
+┌────────────────────┐
+│     CAPSULE        │
+│                    │
+│  Medicine A        │
+│  Medicine B        │
+│  Medicine C        │
+└────────────────────┘
+```
+
+Different medicines are enclosed inside one capsule.
+
+Similarly:
+
+```text
+┌────────────────────┐
+│      Student       │
+│--------------------│
+│ Name               │
+│ Age                │
+│ Roll Number        │
+│ College            │
+│--------------------│
+│ printDetails()     │
+│ markAttendance()   │
+└────────────────────┘
+```
+
+Data and behavior are grouped together.
 
 ---
 
-### **6. Getters and Setters**
-In professional development, encapsulation is implemented by making fields private and using **Getters** and **Setters**.
-*   **Getter:** A public method that returns a private variable's value (e.g., `getName()`).
-*   **Setter:** A public method that updates a private variable's value after performing **validations** (e.g., `setName()`).
-*   **Example Validation:** A `setAge()` method can check if the provided age is between 0 and 150 before assigning it, preventing invalid data from entering the object.
+# 2. Two Core Principles of Encapsulation
+
+## Principle 1: Bundle Data and Methods
+
+Keep related variables and methods together.
+
+### Bad Design
+
+```java
+String name;
+int age;
+int rollNumber;
+```
+
+Scattered everywhere.
+
+---
+
+### Good Design
+
+```java
+class Student {
+    String name;
+    int age;
+    int rollNumber;
+
+    void printDetails() {
+        System.out.println(name);
+    }
+}
+```
+
+Everything is grouped.
+
+---
+
+## Principle 2: Restrict Direct Access
+
+Not everyone should modify data directly.
+
+---
+
+# 3. Bank Account Example
+
+---
+
+## Without Encapsulation
+
+```java
+class BankAccount {
+
+    public double balance;
+}
+```
+
+Usage:
+
+```java
+BankAccount acc = new BankAccount();
+
+acc.balance = 1000000;
+```
+
+Problem:
+
+```text
+Anyone can become a millionaire!
+```
+
+No validation exists.
+
+---
+
+## With Encapsulation
+
+```java
+class BankAccount {
+
+    private double balance;
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+
+        if(amount <= balance)
+            balance -= amount;
+    }
+}
+```
+
+---
+
+## Flow Diagram
+
+```text
+User
+ │
+ ▼
+deposit()
+ │
+ ▼
+Validation
+ │
+ ▼
+Balance Updated
+```
+
+Direct modification blocked.
+
+---
+
+# Advantages of Encapsulation
+
+### Security
+
+Protects sensitive data.
+
+### Validation
+
+Checks data before storing.
+
+### Maintainability
+
+Easy to modify later.
+
+### Flexibility
+
+Internal implementation can change.
+
+---
+
+# 4. Access Modifiers
+
+Access modifiers decide:
+
+```text
+Who can access what?
+```
+
+---
+
+## Access Modifier Hierarchy
+
+```text
+Private
+   ↓
+Default
+   ↓
+Protected
+   ↓
+Public
+```
+
+More downward = More Accessible
+
+---
+
+## Comparison Table
+
+| Modifier  | Same Class | Same Package | Child Class | Anywhere |
+| --------- | ---------- | ------------ | ----------- | -------- |
+| Private   | ✅          | ❌            | ❌           | ❌        |
+| Default   | ✅          | ✅            | ❌           | ❌        |
+| Protected | ✅          | ✅            | ✅           | ❌        |
+| Public    | ✅          | ✅            | ✅           | ✅        |
+
+---
+
+# Private
+
+Most restricted.
+
+```java
+class Student {
+
+    private String name;
+}
+```
+
+Only inside Student class.
+
+---
+
+# Default
+
+No keyword used.
+
+```java
+class Student {
+}
+```
+
+Accessible inside same package.
+
+---
+
+# Protected
+
+```java
+protected int age;
+```
+
+Accessible:
+
+* Same package
+* Child classes
+
+---
+
+# Public
+
+```java
+public String name;
+```
+
+Accessible from anywhere.
+
+---
+
+# Memory View
+
+```text
+PUBLIC
+┌───────────────────┐
+│ Accessible All    │
+└───────────────────┘
+
+PROTECTED
+┌───────────────────┐
+│ Package + Child   │
+└───────────────────┘
+
+DEFAULT
+┌───────────────────┐
+│ Package Only      │
+└───────────────────┘
+
+PRIVATE
+┌───────────────────┐
+│ Class Only        │
+└───────────────────┘
+```
+
+---
+
+# Root-Level Class Restriction
+
+Valid:
+
+```java
+public class Student
+```
+
+```java
+class Student
+```
+
+Invalid:
+
+```java
+private class Student
+```
+
+```java
+protected class Student
+```
+
+Reason:
+
+Root class has no parent context.
+
+---
+
+# 5. Packages in Java
+
+## What is a Package?
+
+A package is simply a folder containing related classes.
+
+---
+
+## Real-Life Example
+
+```text
+college
+│
+├── Student.java
+├── Teacher.java
+└── Course.java
+```
+
+---
+
+## Creating Package
+
+```java
+package college;
+```
+
+Must be first line.
+
+---
+
+## Importing Classes
+
+```java
+import college.Student;
+```
+
+Now Student class can be used.
+
+---
+
+## Import Flow
+
+```text
+Main Program
+      │
+      ▼
+Import Statement
+      │
+      ▼
+JVM Loads Class Bytecode
+      │
+      ▼
+Class Available
+```
+
+---
+
+# Common Java Packages
+
+## java.lang
+
+Imported automatically.
+
+Contains:
+
+```java
+String
+Math
+System
+Integer
+```
+
+---
+
+## java.util
+
+Contains:
+
+```java
+ArrayList
+Scanner
+HashMap
+```
+
+---
+
+## java.io
+
+Contains:
+
+```java
+File
+BufferedReader
+PrintWriter
+```
+
+---
+
+# 6. Inheritance
+
+## Definition
+
+Inheritance allows one class to acquire properties and methods from another class.
+
+---
+
+## Real-Life Relationship
+
+```text
+Car IS-A Vehicle
+```
+
+```text
+Dog IS-A Animal
+```
+
+```text
+MedicalStudent IS-A Student
+```
+
+---
+
+## Syntax
+
+```java
+class Child extends Parent
+{
+}
+```
+
+---
+
+## Example
+
+```java
+class Vehicle {
+
+    void start() {
+        System.out.println("Vehicle Started");
+    }
+}
+```
+
+```java
+class Car extends Vehicle {
+
+}
+```
+
+Usage:
+
+```java
+Car c = new Car();
+
+c.start();
+```
+
+Output:
+
+```text
+Vehicle Started
+```
+
+---
+
+# Inheritance Diagram
+
+```text
+      Vehicle
+         │
+         │
+   ┌─────┴─────┐
+   │           │
+  Car        Bike
+```
+
+Both inherit start().
+
+---
+
+# Advantage: Code Reusability
+
+Without inheritance:
+
+```java
+Car -> start()
+Bike -> start()
+Truck -> start()
+```
+
+Repeated code.
+
+---
+
+With inheritance:
+
+```text
+Vehicle
+  │
+  ├─ start()
+  │
+  ├─ Car
+  ├─ Bike
+  └─ Truck
+```
+
+One implementation.
+
+---
+
+# 7. Types of Inheritance
+
+---
+
+## 1. Single Inheritance
+
+```text
+A
+│
+B
+```
+
+```java
+class B extends A
+```
+
+---
+
+## 2. Multi-Level Inheritance
+
+```text
+Student
+   │
+EngineeringStudent
+   │
+CSEStudent
+```
+
+---
+
+## 3. Hierarchical Inheritance
+
+```text
+          Student
+         /   |   \
+        /    |    \
+      CSE  ECE  Medical
+```
+
+One parent.
+
+Many children.
+
+---
+
+## 4. Multiple Inheritance
+
+```text
+      A
+     / \
+    /   \
+   B     C
+```
+
+Not allowed for classes.
+
+---
+
+# 8. Diamond Problem
+
+Suppose:
+
+```java
+class A {
+    void show()
+}
+```
+
+```java
+class B {
+    void show()
+}
+```
+
+Child:
+
+```java
+class C extends A, B
+```
+
+Now:
+
+```java
+C c = new C();
+c.show();
+```
+
+Question:
+
+```text
+Which show() should execute?
+A.show() ?
+B.show() ?
+```
+
+Ambiguity.
+
+---
+
+## Diamond Diagram
+
+```text
+        A
+       / \
+      /   \
+     B     C
+      \   /
+       \ /
+        D
+```
+
+This ambiguity is called:
+
+```text
+Diamond Problem
+```
+
+Therefore:
+
+```text
+Java does NOT support
+multiple inheritance using classes.
+```
+
+---
+
+# 9. The `super` Keyword
+
+## Definition
+
+`super` refers to the parent class object.
+
+---
+
+## `this` vs `super`
+
+| Keyword | Refers To      |
+| ------- | -------------- |
+| this    | Current Object |
+| super   | Parent Object  |
+
+---
+
+# Use 1: Access Parent Variable
+
+```java
+class Parent {
+
+    int x = 10;
+}
+```
+
+```java
+class Child extends Parent {
+
+    int x = 20;
+
+    void print() {
+
+        System.out.println(super.x);
+    }
+}
+```
+
+Output:
+
+```text
+10
+```
+
+---
+
+# Use 2: Call Parent Method
+
+```java
+class Parent {
+
+    void show() {
+        System.out.println("Parent");
+    }
+}
+```
+
+```java
+class Child extends Parent {
+
+    void show() {
+
+        super.show();
+
+        System.out.println("Child");
+    }
+}
+```
+
+Output:
+
+```text
+Parent
+Child
+```
+
+---
+
+# Use 3: Call Parent Constructor
+
+Parent:
+
+```java
+class Person {
+
+    Person(String name) {
+
+    }
+}
+```
+
+Child:
+
+```java
+class Student extends Person {
+
+    Student(String name) {
+
+        super(name);
+    }
+}
+```
+
+---
+
+## Rule
+
+```java
+super(...)
+```
+
+must be FIRST statement.
+
+---
+
+## Invalid
+
+```java
+Student() {
+
+    System.out.println("Hello");
+
+    super();
+}
+```
+
+Compilation Error.
+
+---
+
+# Constructor Flow
+
+```text
+Create Child Object
+       │
+       ▼
+Parent Constructor
+       │
+       ▼
+Child Constructor
+```
+
+Parent always initializes first.
+
+---
+
+# 10. Getters and Setters
+
+Professional encapsulation uses:
+
+```text
+Private Variables
++
+Public Methods
+```
+
+---
+
+# Getter
+
+Returns value.
+
+```java
+public String getName() {
+    return name;
+}
+```
+
+---
+
+# Setter
+
+Updates value.
+
+```java
+public void setName(String name) {
+    this.name = name;
+}
+```
+
+---
+
+# Full Example
+
+```java
+class Student {
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+
+Usage:
+
+```java
+Student s = new Student();
+
+s.setName("Aditya");
+
+System.out.println(s.getName());
+```
+
+Output:
+
+```text
+Aditya
+```
+
+---
+
+# Validation Using Setter
+
+```java
+class Student {
+
+    private int age;
+
+    public void setAge(int age) {
+
+        if(age >= 0 && age <= 150)
+            this.age = age;
+    }
+}
+```
+
+---
+
+## Flow
+
+```text
+User Input
+     │
+     ▼
+ Setter
+     │
+ Validation
+     │
+ ┌───┴────┐
+ │        │
+Valid   Invalid
+ │        │
+ ▼        ▼
+Store   Reject
+```
+
+---
+
+# Interview Questions
+
+## Q1. What is Encapsulation?
+
+Wrapping data and methods into one unit and restricting direct access.
+
+---
+
+## Q2. Why Use Private Variables?
+
+To protect data and enforce validation.
+
+---
+
+## Q3. Difference Between Public and Private?
+
+| Public                | Private                      |
+| --------------------- | ---------------------------- |
+| Accessible Everywhere | Accessible Only Inside Class |
+
+---
+
+## Q4. What is a Package?
+
+A folder containing related classes and interfaces.
+
+---
+
+## Q5. What is Inheritance?
+
+Acquiring properties and methods from another class.
+
+---
+
+## Q6. Which Keyword is Used for Inheritance?
+
+```java
+extends
+```
+
+---
+
+## Q7. Why Doesn't Java Support Multiple Inheritance?
+
+Because of:
+
+```text
+Diamond Problem
+```
+
+---
+
+## Q8. What is `super`?
+
+Reference to parent class object.
+
+---
+
+## Q9. Difference Between `this` and `super`?
+
+| this           | super         |
+| -------------- | ------------- |
+| Current Object | Parent Object |
+
+---
+
+## Q10. What are Getters and Setters?
+
+Methods used to access and modify private variables safely.
+
+---
+
+# Quick Revision Sheet
+
+```text
+ENCAPSULATION
+=============
+Wrap Data + Methods
+
+GOALS
+=====
+1. Group Data
+2. Restrict Access
+
+ACCESS MODIFIERS
+================
+Private
+Default
+Protected
+Public
+
+PACKAGE
+=======
+Folder Of Classes
+
+IMPORT
+======
+Makes Classes Available
+
+INHERITANCE
+===========
+IS-A Relationship
+
+KEYWORD
+=======
+extends
+
+TYPES
+=====
+Single
+Multilevel
+Hierarchical
+
+NOT SUPPORTED
+=============
+Multiple Inheritance (Classes)
+
+REASON
+======
+Diamond Problem
+
+SUPER
+=====
+Parent Reference
+
+USES OF SUPER
+=============
+1. Parent Variable
+2. Parent Method
+3. Parent Constructor
+
+GETTER
+======
+Read Data
+
+SETTER
+======
+Modify Data
+
+BENEFIT
+=======
+Validation + Security
+```
+
+---
+
+# Complete OOP Flow
+
+```text
+Class Created
+      │
+      ▼
+Encapsulation
+(Data + Methods)
+      │
+      ▼
+Access Modifiers
+(Control Access)
+      │
+      ▼
+Packages
+(Organize Classes)
+      │
+      ▼
+Inheritance
+(Code Reuse)
+      │
+      ▼
+super
+(Access Parent)
+      │
+      ▼
+Getters & Setters
+(Safe Access)
+```
+
+---

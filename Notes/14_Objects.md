@@ -1,81 +1,1024 @@
-
-### **1. Object Memory Allocation: Stack and Heap**
-When you create an object (e.g., `Student s1 = new Student();`), Java manages memory across two regions:
-*   **Heap Memory:** This is where the actual **object** is stored. When the `new` keyword is used, space is dynamically allocated in the Heap for all fields defined in the class (e.g., `name`, `age`, `rollNumber`).
-*   **Stack Memory:** This stores the **reference variable** (e.g., `s1`). The reference variable holds the memory address (pointer) of the object located in the Heap.
+# Java Object Memory, Call by Value, Shallow Copy & Deep Copy
 
 ---
 
-### **2. Memory Sizing in Java**
-#### **A. Reference Variable Size**
-The size of a reference variable in the Stack depends on the JVM and the underlying architecture:
-*   **Default:** In a 64-bit JVM using compressed pointers, a reference variable typically takes **4 bytes**.
-*   **Alternative:** Some 64-bit JVMs may use **8 bytes**.
+# Table of Contents
 
-#### **B. Object Size Calculation**
-The total size of an object in the Heap is the sum of three components: **Object Header**, **Exact Fields**, and **Padding**.
-
-1.  **Object Header (Metadata):** Stores "data about the data" (metadata) that Java needs to manage the object. It consists of:
-    *   **Mark Words (8 bytes):** Stores information about locking mechanisms, synchronization, and garbage collection.
-    *   **Class Pointer (4 or 8 bytes):** A reference that points to the object's class definition. Most JVMs use 4 bytes.
-    *   *Typical Header Total:* **12 bytes**.
-
-2.  **Fields (Exact Data):** The size of the actual variables stored in the object.
-    *   `int`, `float`, and **Reference types** (like `String` or other objects) take 4 bytes each.
-    *   `double` and `long` take 8 bytes.
-    *   `byte` takes 1 byte.
-
-3.  **Padding (Alignment):** Modern CPUs process data in **8-byte chunks** for efficiency. Java ensures every object's total size is a **multiple of 8 bytes**. If the sum of the header and fields is not a multiple of 8, "padding" bytes are added to reach the next multiple.
-
-#### **Example 1: Student Object**
-*   **Fields:** `String name` (4B), `int age` (4B), `int rollNumber` (4B), `String college` (4B) = **16 bytes**.
-*   **Header:** 12 bytes.
-*   **Subtotal:** 12 + 16 = 28 bytes.
-*   **Padding:** To reach the next multiple of 8 (which is 32), **4 bytes** of padding are added.
-*   **Total Size:** **32 bytes**.
-
-#### **Example 2: Person Object**
-*   **Field:** `byte age` (1 byte).
-*   **Header:** 12 bytes.
-*   **Subtotal:** 12 + 1 = 13 bytes.
-*   **Padding:** To reach the next multiple of 8 (which is 16), **3 bytes** of padding are added.
-*   **Total Size:** **16 bytes**.
+1. Object Memory Allocation
+2. Stack vs Heap Memory
+3. Reference Variables
+4. Object Size Calculation
+5. JVM Object Layout
+6. Memory Diagrams
+7. Call by Value vs Call by Reference
+8. Java Parameter Passing
+9. Shallow Copy
+10. Deep Copy
+11. Copy Constructor
+12. Interview Questions
+13. Quick Revision Sheet
 
 ---
 
-### **3. Call by Value vs. Call by Reference**
-A common misconception is that Java uses both mechanisms. Internally, **Java is strictly "Call by Value"** for both primitives and objects.
+# 1. Object Memory Allocation
 
-#### **A. Primitives (Standard Call by Value)**
-When a primitive (like `int x = 4`) is passed to a method, a **copy of the value** is created in a new local variable within that method's stack frame.
-*   **Effect:** Changes made to the variable inside the method do not affect the original variable in the `main` method because they are entirely different containers in memory.
+Whenever an object is created:
 
-#### **B. Objects (The "Call by Reference" Illusion)**
-When an object reference (e.g., `r1`) is passed to a method, the **value of the reference (the memory address)** is copied into a new local reference variable (e.g., `r`).
-*   **Effect:** Because both `r1` and `r` now hold the same memory address, they both point to the **same object in the Heap**.
-*   **Result:** If the method modifies the object's fields (e.g., `r.x = 10`), the change is visible through the original reference `r1`. This provides the *effect* of call by reference, but technically it is the address value that was copied.
+```java
+Student s1 = new Student();
+```
+
+Java uses two memory regions:
+
+```text
+Stack Memory
+Heap Memory
+```
 
 ---
 
-### **4. Object Copying Strategies**
-Java allows you to copy data from one object to another using two main strategies.
+## What Happens Internally?
 
-#### **A. Shallow Copy**
-A shallow copy occurs when you assign one reference variable to another without creating a new object.
-*   **Example:** `Random r3 = r1;`.
-*   **Mechanism:** `r3` simply copies the memory address stored in `r1`. No new space is allocated in the Heap.
-*   **Behavior:** Both variables point to the **same object**. Changes made through `r3` will reflect in `r1` and vice-versa.
+```text
+Student s1 = new Student();
+```
 
-#### **B. Deep Copy**
-A deep copy occurs when you create a **completely new object** in the Heap and manually copy the values from the original object into the new one. This is often done using a **Copy Constructor**.
-*   **Example:** `Random r2 = new Random(r1);`.
-*   **Mechanism:** The `new` keyword allocates a new, independent space in the Heap. The constructor then takes values from `r1` and assigns them to `r2`.
-*   **Behavior:** The objects are **independent**. Changing a value in `r2` does not affect `r1` because they occupy different memory locations.
+### Step 1
 
-### **Summary Table: Reference vs. Object**
-| Feature | Reference Variable | Actual Object |
-| :--- | :--- | :--- |
-| **Location** | Stack Memory | Heap Memory |
-| **Size** | 4 or 8 bytes | Header + Fields + Padding |
-| **Role** | Stores the Address | Stores the Data/Fields |
-| **Copying** | Copying address = Shallow | Copying data to new object = Deep |
+Create reference variable
+
+```text
+s1
+```
+
+inside Stack Memory.
+
+### Step 2
+
+Allocate memory in Heap.
+
+```text
+new Student()
+```
+
+creates actual object.
+
+### Step 3
+
+Store object's address inside `s1`.
+
+---
+
+## Memory Diagram
+
+```text
+STACK
+
++-------------+
+| s1 = 1000   |
++-------------+
+
+       |
+       ▼
+
+HEAP
+
+Address 1000
+
++-------------------+
+| name              |
+| age               |
+| rollNumber        |
++-------------------+
+```
+
+---
+
+# 2. Stack vs Heap Memory
+
+## Stack Memory
+
+Stores:
+
+```text
+Local Variables
+Method Calls
+Reference Variables
+```
+
+Example:
+
+```java
+int x = 10;
+Student s1;
+```
+
+---
+
+## Heap Memory
+
+Stores:
+
+```text
+Objects
+Arrays
+Strings
+```
+
+Example:
+
+```java
+new Student()
+new String("Java")
+new int[10]
+```
+
+---
+
+## Comparison Table
+
+| Feature           | Stack                        | Heap              |
+| ----------------- | ---------------------------- | ----------------- |
+| Stores            | References & Local Variables | Objects           |
+| Access Speed      | Faster                       | Slower            |
+| Memory Management | Automatic                    | Garbage Collector |
+| Lifetime          | Method Lifetime              | Object Lifetime   |
+
+---
+
+# 3. Reference Variables
+
+A common misconception:
+
+```java
+Student s1 = new Student();
+```
+
+Many beginners think:
+
+```text
+s1 = Object
+```
+
+Wrong.
+
+---
+
+Actually:
+
+```text
+s1 = Address of Object
+```
+
+---
+
+Visualization
+
+```text
+s1
+
+  |
+  ▼
+
+Object in Heap
+```
+
+---
+
+## Example
+
+```java
+Student s1 = new Student();
+Student s2 = s1;
+```
+
+Memory:
+
+```text
+STACK
+
+s1 = 1000
+s2 = 1000
+
+       |
+       ▼
+
+HEAP
+
+Object @1000
+```
+
+Both references point to the same object.
+
+---
+
+# 4. Size of Reference Variables
+
+Depends on JVM implementation.
+
+Typical values:
+
+| Architecture                 | Reference Size |
+| ---------------------------- | -------------- |
+| 32-bit JVM                   | 4 Bytes        |
+| 64-bit JVM (Compressed OOPs) | 4 Bytes        |
+| 64-bit JVM (No Compression)  | 8 Bytes        |
+
+---
+
+# 5. JVM Object Layout
+
+Every object contains:
+
+```text
+Object Header
++
+Fields
++
+Padding
+```
+
+---
+
+## Object Structure
+
+```text
++--------------------+
+| Object Header      |
++--------------------+
+| Instance Fields    |
++--------------------+
+| Padding            |
++--------------------+
+```
+
+---
+
+# 6. Object Header
+
+Contains JVM metadata.
+
+---
+
+## Mark Word
+
+Usually:
+
+```text
+8 Bytes
+```
+
+Stores:
+
+```text
+Lock Information
+Synchronization Data
+Hash Code
+GC Information
+```
+
+---
+
+## Class Pointer
+
+Usually:
+
+```text
+4 Bytes
+```
+
+Points to:
+
+```text
+Class Metadata
+```
+
+Example:
+
+```java
+Student.class
+```
+
+---
+
+## Total Header Size
+
+Typical:
+
+```text
+12 Bytes
+```
+
+---
+
+# 7. Field Size Rules
+
+| Type      | Size    |
+| --------- | ------- |
+| byte      | 1 Byte  |
+| boolean   | 1 Byte  |
+| char      | 2 Bytes |
+| short     | 2 Bytes |
+| int       | 4 Bytes |
+| float     | 4 Bytes |
+| reference | 4 Bytes |
+| long      | 8 Bytes |
+| double    | 8 Bytes |
+
+---
+
+# 8. Padding and Alignment
+
+Modern CPUs prefer:
+
+```text
+8-byte alignment
+```
+
+Therefore JVM rounds object size to:
+
+```text
+Multiple of 8
+```
+
+---
+
+# Example 1: Student Object
+
+```java
+class Student
+{
+    String name;
+    int age;
+    int roll;
+    String college;
+}
+```
+
+---
+
+## Field Size
+
+```text
+name      = 4
+age       = 4
+roll      = 4
+college   = 4
+
+Total     = 16 Bytes
+```
+
+---
+
+## Add Header
+
+```text
+Header = 12
+
+16 + 12 = 28
+```
+
+---
+
+## Alignment
+
+Next multiple of 8:
+
+```text
+32
+```
+
+Padding:
+
+```text
+4 Bytes
+```
+
+---
+
+## Final Size
+
+```text
+32 Bytes
+```
+
+---
+
+# Example 2: Person Object
+
+```java
+class Person
+{
+    byte age;
+}
+```
+
+---
+
+Calculation:
+
+```text
+Header = 12
+Field  = 1
+
+Total = 13
+```
+
+Next multiple of 8:
+
+```text
+16
+```
+
+Padding:
+
+```text
+3 Bytes
+```
+
+Final Size:
+
+```text
+16 Bytes
+```
+
+---
+
+# 9. Call by Value vs Call by Reference
+
+Interview Favorite.
+
+---
+
+## Important Truth
+
+Java is:
+
+```text
+100% Call By Value
+```
+
+There is NO true Call By Reference.
+
+---
+
+# Primitive Example
+
+```java
+static void change(int x)
+{
+    x = 100;
+}
+```
+
+```java
+int a = 10;
+change(a);
+
+System.out.println(a);
+```
+
+Output:
+
+```text
+10
+```
+
+---
+
+## Why?
+
+Memory:
+
+```text
+a = 10
+
+copy
+
+x = 10
+```
+
+Different variables.
+
+---
+
+Diagram
+
+```text
+MAIN
+
+a = 10
+
+       Copy
+
+METHOD
+
+x = 10
+```
+
+---
+
+Changing:
+
+```java
+x = 100;
+```
+
+does not affect:
+
+```java
+a
+```
+
+---
+
+# 10. Object Example
+
+```java
+class Student
+{
+    int age;
+}
+```
+
+```java
+static void update(Student s)
+{
+    s.age = 50;
+}
+```
+
+---
+
+```java
+Student s1 = new Student();
+s1.age = 20;
+
+update(s1);
+```
+
+Output:
+
+```text
+50
+```
+
+---
+
+Why?
+
+Because copied value is:
+
+```text
+Address
+```
+
+not object.
+
+---
+
+Memory
+
+```text
+s1 = 1000
+
+Copy
+
+s  = 1000
+```
+
+Both point to same object.
+
+---
+
+Diagram
+
+```text
+s1 -----------+
+              |
+              ▼
+         Student Object
+
+s ------------+
+```
+
+---
+
+# Interview Statement
+
+Java is:
+
+```text
+Pass By Value
+```
+
+but value copied for objects is:
+
+```text
+Reference Address
+```
+
+which creates the illusion of:
+
+```text
+Pass By Reference
+```
+
+---
+
+# 11. Shallow Copy
+
+## Definition
+
+Copying reference only.
+
+---
+
+Example
+
+```java
+Student s2 = s1;
+```
+
+---
+
+Memory
+
+```text
+s1 = 1000
+s2 = 1000
+```
+
+---
+
+Diagram
+
+```text
+s1 -----+
+         |
+         ▼
+      Object
+
+s2 -----+
+```
+
+---
+
+## Behavior
+
+```java
+s2.age = 50;
+```
+
+Then:
+
+```java
+System.out.println(s1.age);
+```
+
+Output:
+
+```text
+50
+```
+
+Same object.
+
+---
+
+## Characteristics
+
+✅ Fast
+
+✅ No extra memory
+
+❌ Shared data
+
+❌ Side effects possible
+
+---
+
+# 12. Deep Copy
+
+## Definition
+
+Create completely new object and copy data.
+
+---
+
+Example
+
+```java
+Student s2 = new Student();
+
+s2.age = s1.age;
+```
+
+---
+
+Memory
+
+```text
+s1 -> Object A
+
+s2 -> Object B
+```
+
+---
+
+Diagram
+
+```text
+s1
+ |
+ ▼
+Object A
+
+s2
+ |
+ ▼
+Object B
+```
+
+---
+
+## Behavior
+
+```java
+s2.age = 100;
+```
+
+does NOT affect:
+
+```java
+s1.age
+```
+
+---
+
+# 13. Copy Constructor
+
+Common way to perform deep copy.
+
+---
+
+Example
+
+```java
+class Student
+{
+    String name;
+    int age;
+
+    Student(Student other)
+    {
+        this.name = other.name;
+        this.age = other.age;
+    }
+}
+```
+
+---
+
+Usage
+
+```java
+Student s2 = new Student(s1);
+```
+
+---
+
+Flow
+
+```text
+Original Object
+        |
+        ▼
+Copy Constructor
+        |
+        ▼
+New Independent Object
+```
+
+---
+
+# 14. Shallow vs Deep Copy
+
+| Feature           | Shallow Copy | Deep Copy |
+| ----------------- | ------------ | --------- |
+| New Object        | No           | Yes       |
+| Memory Allocation | No           | Yes       |
+| Shares Data       | Yes          | No        |
+| Faster            | Yes          | No        |
+| Independent       | No           | Yes       |
+
+---
+
+# 15. Interview Questions
+
+---
+
+## Q1. Where are objects stored?
+
+```text
+Heap Memory
+```
+
+---
+
+## Q2. Where are references stored?
+
+```text
+Stack Memory
+```
+
+---
+
+## Q3. What is stored inside reference variable?
+
+```text
+Memory Address
+```
+
+---
+
+## Q4. Does Java support Call By Reference?
+
+```text
+No
+```
+
+Java is strictly:
+
+```text
+Call By Value
+```
+
+---
+
+## Q5. Why do object changes reflect outside methods?
+
+Because copied value is:
+
+```text
+Reference Address
+```
+
+and both references point to same object.
+
+---
+
+## Q6. What is shallow copy?
+
+Copying address only.
+
+---
+
+## Q7. What is deep copy?
+
+Creating new object and copying data.
+
+---
+
+## Q8. What is Copy Constructor?
+
+Constructor that receives object of same class and copies data.
+
+---
+
+## Q9. What is object header?
+
+JVM metadata area storing:
+
+```text
+Lock Information
+GC Information
+Class Information
+```
+
+---
+
+## Q10. Why does JVM use padding?
+
+For:
+
+```text
+Memory Alignment
+CPU Optimization
+```
+
+---
+
+# Quick Revision Sheet
+
+```text
+STACK
+=====
+References
+Local Variables
+
+HEAP
+====
+Objects
+Arrays
+Strings
+
+REFERENCE
+=========
+Stores Address
+
+OBJECT SIZE
+===========
+Header + Fields + Padding
+
+HEADER
+======
+Mark Word + Class Pointer
+
+JAVA
+====
+100% Call By Value
+
+PRIMITIVE
+=========
+Value Copied
+
+OBJECT
+======
+Reference Address Copied
+
+SHALLOW COPY
+============
+Copy Address
+
+DEEP COPY
+=========
+Copy Data
+
+COPY CONSTRUCTOR
+================
+Creates Independent Object
+```
+
+---
+
+# Memory Trick
+
+```text
+REFERENCE
+=========
+Address Holder
+
+OBJECT
+======
+Data Holder
+
+SHALLOW COPY
+============
+Same House
+Two Names
+
+DEEP COPY
+=========
+Two Different Houses
+
+JAVA
+====
+Never Passes Objects
+
+Only Passes
+Values
+```
+
+---
+
+# Complete Object Formula
+
+```text
+Student s1 = new Student();
+
+        |
+        ▼
+Reference Created
+        |
+        ▼
+Heap Memory Allocated
+        |
+        ▼
+Object Header Created
+        |
+        ▼
+Fields Initialized
+        |
+        ▼
+Constructor Executes
+        |
+        ▼
+Address Returned
+        |
+        ▼
+Stored In Reference Variable
+```
+
+---
+
