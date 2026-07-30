@@ -96,12 +96,59 @@ public class loops {
 
 
 //        9.Stop loop when value becomes 6 using break.
+//        int n = input.nextInt();
+//        for (int i = 1; i <= n; i++){
+//            if (i == 6){
+//                break;
+//            }
+//            System.out.println(i);
+//        }
+
+
+//        10.Print counting from n to 1
+//        int n = input.nextInt();
+//        for (int i = n; i >= 1; i--){
+//            System.out.println(i);
+//        }
+
+
+//        11.Print the 10 multiples of n
+//        int n = input.nextInt();
+//        for (int i = 1; i <= 10; i++){
+//            System.out.println(i*n);
+//        }
+
+
+//        12.Print all prime numbers from 1 to 100
+//        for (int num = 1; num <= 100; num++){
+//            boolean isPrime = true;
+//
+//            for (int i = 2; i <= Math.sqrt(num); i++){
+//                if (num % i == 0){
+//                    isPrime = false;
+//                    break;
+//                }
+//            }
+//            if (isPrime){
+//                System.out.print(num + " ");
+//            }
+//        }
+
+
+//        13.Print all integers in range from 50 to 100, that are perfectly divisible by 7
+//        for (int i = 50; i <= 100; i++){
+//            if (i % 7 == 0){
+//                System.out.print(i + " ");
+//            }
+//        }
+
+
+//        14.Print the sum of all the numbers from 1 to n
         int n = input.nextInt();
+        int sum = 0;
         for (int i = 1; i <= n; i++){
-            if (i == 6){
-                break;
-            }
-            System.out.println(i);
+            sum += i;
         }
+        System.out.println("The sum: " + sum);
     }
 }
