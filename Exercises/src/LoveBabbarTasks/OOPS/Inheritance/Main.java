@@ -10,5 +10,13 @@ public class Main {
 //        b.wheelie();
 //        System.out.println(b.brand);
 //        v.stop();
+
+
+//        Employee e = new Employee("Rahul", 45000);
+//        Manager m = new Manager("Ramesh", 60000);
+//        Developer d = new Developer("Sita", 65000);
+//        e.work();
+//        m.conductMeeting();
+//        d.writeCode();
     }
 }
