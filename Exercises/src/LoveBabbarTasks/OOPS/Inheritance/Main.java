@@ -27,5 +27,25 @@ public class Main {
 //        d.bark();
 //        c.meow();
 //        c.sleep();
+
+//        BankingAccount account = new BankingAccount(101, 5000);
+//        account.deposit(2000);
+//        System.out.println("Balance after deposit: " + account.getBalance());
+//        account.withdraw(1000);
+//        System.out.println("Balance after withdrawal: " + account.getBalance());
+//        SavingsAccount savings = new SavingsAccount(102, 10000, 365);
+//        double interest = savings.calculateInterest(5); // 5% yearly interest
+//        System.out.println("Savings Account Balance: " + savings.getBalance());
+//        System.out.println("Interest earned: " + interest);
+//        CurrentAccount current = new CurrentAccount(103, 5000, 10000);
+//        System.out.println("Current Account Balance: " + current.getBalance());
+//        boolean success = current.overdraft(12000);
+//        if(success){
+//            System.out.println("Overdraft successful");
+//        }
+//        else{
+//            System.out.println("Overdraft limit exceeded");
+//        }
+//        System.out.println("Balance after overdraft: " + current.getBalance());
     }
 }
