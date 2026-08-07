@@ -47,5 +47,21 @@ public class Main {
 //            System.out.println("Overdraft limit exceeded");
 //        }
 //        System.out.println("Balance after overdraft: " + current.getBalance());
+
+
+        Furniture chair = new Furniture("Wooden Chair", 2500);
+        System.out.println("Furniture Details:");
+        chair.displayDetails();
+        chair.material("Wood");
+        System.out.println();
+        Clothing shirt = new Clothing("Cotton Shirt", 1200);
+        System.out.println("Clothing Details:");
+        shirt.displayDetails();
+        shirt.size(42);
+        System.out.println();
+        Electronics laptop = new Electronics("Laptop", 55000);
+        System.out.println("Electronics Details:");
+        laptop.displayDetails();
+        laptop.warrantyYears(2);
     }
 }
