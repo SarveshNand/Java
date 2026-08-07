@@ -153,5 +153,28 @@ public class Main {
 //        newspaper.showDetails();
 //        newspaper.borrow();
 //        newspaper.returnItem();
+
+
+        Biryani biryani1 = new Biryani("Chicken Biryani", 250, "Basmati");
+        Biryani biryani2 = new Biryani("Veg Biryani", 180, "Jeera");
+        Sandwich sandwich = new Sandwich("Club Sandwich", 150, "Vegetable");
+        Pasta pasta = new Pasta("White Sauce Pasta", 220, "Creamy");
+        Dessert dessert = new Dessert("Gulab Jamun", 80, "Sweet");
+        System.out.println("Menu Details:");
+        System.out.println("\nBiryani 1:");
+        biryani1.display();
+        biryani1.prepare();
+        System.out.println("\nBiryani 2:");
+        biryani2.display();
+        biryani2.prepare();
+        System.out.println("\nSandwich:");
+        sandwich.display();
+        sandwich.prepare();
+        System.out.println("\nPasta:");
+        pasta.display();
+        pasta.prepare();
+        System.out.println("\nDessert:");
+        dessert.display();
+        dessert.prepare();
     }
 }
