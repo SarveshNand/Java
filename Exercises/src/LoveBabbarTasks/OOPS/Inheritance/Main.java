@@ -88,5 +88,25 @@ public class Main {
 //        System.out.println("\nReceptionist Details:");
 //        receptionist.login();
 //        receptionist.duty();
+
+
+//        Student student = new Student("student01", "pass123");
+//        Faculty faculty = new Faculty("faculty01", "teach456");
+//        Admin admin = new Admin("admin01", "admin789");
+//
+//        System.out.println("Student Details:");
+//        student.login();
+//        student.responsibility();
+//        student.logout();
+//
+//        System.out.println("\nFaculty Details:");
+//        faculty.login();
+//        faculty.responsibility();
+//        faculty.logout();
+//
+//        System.out.println("\nAdmin Details:");
+//        admin.login();
+//        admin.responsibility();
+//        admin.logout();
     }
 }
