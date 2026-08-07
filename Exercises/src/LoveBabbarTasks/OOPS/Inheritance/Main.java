@@ -125,5 +125,16 @@ public class Main {
 //        auto.startRide();
 //        auto.calculateFare(6);
 //        auto.endRide();
+
+
+//        CreditCardPayment cardPayment = new CreditCardPayment(5000, "1234-5678-9012");
+//        UPIPayment upiPayment = new UPIPayment(1500, "user@upi");
+//        NetBankingPayment netPayment = new NetBankingPayment(3000, "State Bank");
+//        System.out.println("Credit Card Payment:");
+//        cardPayment.pay();
+//        System.out.println("\nUPI Payment:");
+//        upiPayment.pay();
+//        System.out.println("\nNet Banking Payment:");
+//        netPayment.pay();
     }
 }
