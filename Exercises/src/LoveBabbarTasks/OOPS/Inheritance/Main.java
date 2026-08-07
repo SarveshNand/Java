@@ -18,5 +18,14 @@ public class Main {
 //        e.work();
 //        m.conductMeeting();
 //        d.writeCode();
+
+
+//        Animal a = new Animal("Roomm", 14);
+//        Dog d = new Dog("Shera", 10);
+//        Cat c = new Cat("Oggie", 13);
+//        a.eat();
+//        d.bark();
+//        c.meow();
+//        c.sleep();
     }
 }
