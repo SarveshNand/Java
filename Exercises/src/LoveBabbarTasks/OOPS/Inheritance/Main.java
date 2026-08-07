@@ -49,19 +49,30 @@ public class Main {
 //        System.out.println("Balance after overdraft: " + current.getBalance());
 
 
-        Furniture chair = new Furniture("Wooden Chair", 2500);
-        System.out.println("Furniture Details:");
-        chair.displayDetails();
-        chair.material("Wood");
-        System.out.println();
-        Clothing shirt = new Clothing("Cotton Shirt", 1200);
-        System.out.println("Clothing Details:");
-        shirt.displayDetails();
-        shirt.size(42);
-        System.out.println();
-        Electronics laptop = new Electronics("Laptop", 55000);
-        System.out.println("Electronics Details:");
-        laptop.displayDetails();
-        laptop.warrantyYears(2);
+//        Furniture chair = new Furniture("Wooden Chair", 2500);
+//        System.out.println("Furniture Details:");
+//        chair.displayDetails();
+//        chair.material("Wood");
+//        System.out.println();
+//        Clothing shirt = new Clothing("Cotton Shirt", 1200);
+//        System.out.println("Clothing Details:");
+//        shirt.displayDetails();
+//        shirt.size(42);
+//        System.out.println();
+//        Electronics laptop = new Electronics("Laptop", 55000);
+//        System.out.println("Electronics Details:");
+//        laptop.displayDetails();
+//        laptop.warrantyYears(2);
+
+
+//        Pizza pizza = new Pizza("Margherita", 299, "Thin Crust");
+//        Burger burger = new Burger("Cheese Burger", 199, "Veg");
+//        Drink drink = new Drink("Coke", 49, 500);
+//        System.out.println("Pizza Details:");
+//        pizza.showMenu();
+//        System.out.println("\nBurger Details:");
+//        burger.showMenu();
+//        System.out.println("\nDrink Details:");
+//        drink.showMenu();
     }
 }
