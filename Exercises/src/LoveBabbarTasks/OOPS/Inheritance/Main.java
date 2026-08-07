@@ -74,5 +74,19 @@ public class Main {
 //        burger.showMenu();
 //        System.out.println("\nDrink Details:");
 //        drink.showMenu();
+
+
+//        Doctor doctor = new Doctor(101, "Dr. Sharma");
+//        Nurse nurse = new Nurse(102, "Anita");
+//        Receptionist receptionist = new Receptionist(103, "Rahul");
+//        System.out.println("Doctor Details:");
+//        doctor.login();
+//        doctor.duty();
+//        System.out.println("\nNurse Details:");
+//        nurse.login();
+//        nurse.duty();
+//        System.out.println("\nReceptionist Details:");
+//        receptionist.login();
+//        receptionist.duty();
     }
 }
