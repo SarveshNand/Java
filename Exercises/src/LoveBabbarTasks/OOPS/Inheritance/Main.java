@@ -108,5 +108,22 @@ public class Main {
 //        admin.login();
 //        admin.responsibility();
 //        admin.logout();
+
+
+//        BikeRide bike = new BikeRide("Station", "Mall");
+//        CabRide cab = new CabRide("Airport", "Hotel");
+//        AutoRide auto = new AutoRide("Home", "Market");
+//        System.out.println("Bike Ride:");
+//        bike.startRide();
+//        bike.calculateFare(5);
+//        bike.endRide();
+//        System.out.println("\nCab Ride:");
+//        cab.startRide();
+//        cab.calculateFare(8);
+//        cab.endRide();
+//        System.out.println("\nAuto Ride:");
+//        auto.startRide();
+//        auto.calculateFare(6);
+//        auto.endRide();
     }
 }
