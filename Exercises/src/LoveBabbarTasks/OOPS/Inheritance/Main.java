@@ -136,5 +136,22 @@ public class Main {
 //        upiPayment.pay();
 //        System.out.println("\nNet Banking Payment:");
 //        netPayment.pay();
+
+
+//        Book book = new Book("Java Programming", "James Gosling", 500);
+//        Magazine magazine = new Magazine("Tech World", "Tech Media", 25);
+//        Newspaper newspaper = new Newspaper("Daily News", "News Corp", "07-Aug-2026");
+//        System.out.println("Book Details:");
+//        book.showDetails();
+//        book.borrow();
+//        book.returnItem();
+//        System.out.println("\nMagazine Details:");
+//        magazine.showDetails();
+//        magazine.borrow();
+//        magazine.returnItem();
+//        System.out.println("\nNewspaper Details:");
+//        newspaper.showDetails();
+//        newspaper.borrow();
+//        newspaper.returnItem();
     }
 }
