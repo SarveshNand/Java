@@ -51,16 +51,27 @@ public class Main {
 //        }
 
 
-        Vehicle[] vehicles = new Vehicle[3];
-        vehicles[0] = new Car(101, "Toyota", 2000, 5, true);
-        vehicles[1] = new Bike(102, "Honda", 800, 150, true);
-        vehicles[2] = new Truck(103, "Tata", 5000, 5000, 6);
-        int days = 3;
-        for (Vehicle vehicle: vehicles){
-            System.out.println("Brand: " + vehicle.brand);
-            System.out.println("Rent for " + days + " days: " + vehicle.calculateRent(days));
-            vehicle.start();
-            vehicle.stop();
+//        Vehicle[] vehicles = new Vehicle[3];
+//        vehicles[0] = new Car(101, "Toyota", 2000, 5, true);
+//        vehicles[1] = new Bike(102, "Honda", 800, 150, true);
+//        vehicles[2] = new Truck(103, "Tata", 5000, 5000, 6);
+//        int days = 3;
+//        for (Vehicle vehicle: vehicles){
+//            System.out.println("Brand: " + vehicle.brand);
+//            System.out.println("Rent for " + days + " days: " + vehicle.calculateRent(days));
+//            vehicle.start();
+//            vehicle.stop();
+//            System.out.println("-------------------------");
+//        }
+
+
+        BankAccount[] accounts = new BankAccount[3];
+        accounts[0] = new SavingsAccount(1001, "Rahul", 50000, 5);
+        accounts[1] = new CurrentAccount(1002, "Aman", 30000, 10000);
+        accounts[2] = new SalaryAccount(1003, "Priya", 40000, "Google");
+        for (BankAccount account: accounts){
+            System.out.println("Balance: " + account.displayBalance());
+            System.out.println("Interest: " + account.calculateInterest());
             System.out.println("-------------------------");
         }
     }
