@@ -14,14 +14,26 @@ public class Main {
 //        payment.pay();
 //        payment.generateReceipt();
 
-        Employee[] employees = new Employee[3];
-        employees[0] = new FullTimeEmployee("Rahul", 101, 50000, 5000);
-        employees[1] = new PartTimeEmployee("Aman", 102, 80, 500);
-        employees[2] = new Freelancer("Priya", 103, 100000, 10);
+//        Employee[] employees = new Employee[3];
+//        employees[0] = new FullTimeEmployee("Rahul", 101, 50000, 5000);
+//        employees[1] = new PartTimeEmployee("Aman", 102, 80, 500);
+//        employees[2] = new Freelancer("Priya", 103, 100000, 10);
+//
+//        for (Employee employee : employees){
+//            employee.displayDetails();
+//            System.out.println("--------------------");
+//        }
 
-        for (Employee employee : employees){
-            employee.displayDetails();
-            System.out.println("--------------------");
+
+        Notification[] notifications = new Notification[4];
+        notifications[0] = new EmailNotification("Hello Rahul", "Rahul", "Welcome Email");
+        notifications[1] = new SMSNotification("Your OTP is 1234", "Aman", 9876543210l);
+        notifications[2] = new PushNotification("You have a new message", "Priya", "DEVICE123");
+        notifications[3] = new WhatsappNotification("Your order has been shipped", "Rohit", 9876543210l);
+
+        for (Notification notification : notifications){
+            notification.send();
+            System.out.println("-------------------------");
         }
     }
 }
