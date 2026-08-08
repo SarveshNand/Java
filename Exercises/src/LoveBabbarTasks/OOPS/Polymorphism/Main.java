@@ -37,16 +37,30 @@ public class Main {
 //        }
 
 
-        FoodItem[] order = new FoodItem[4];
-        order[0] = new Pizza("Farmhouse Pizza", 300, 2, "Large", "Extra Cheese");
-        order[1] = new Burger("Chicken Burger", 200, 1, "Chicken", true);
-        order[2] = new Biryani("Chicken Biryani", 250, 2, "Chicken", "Large");
-        order[3] = new Dessert("Ice Cream", 100, 2, "Vanilla", true);
+//        FoodItem[] order = new FoodItem[4];
+//        order[0] = new Pizza("Farmhouse Pizza", 300, 2, "Large", "Extra Cheese");
+//        order[1] = new Burger("Chicken Burger", 200, 1, "Chicken", true);
+//        order[2] = new Biryani("Chicken Biryani", 250, 2, "Chicken", "Large");
+//        order[3] = new Dessert("Ice Cream", 100, 2, "Vanilla", true);
+//
+//        for (FoodItem item : order){
+//            item.displayDetails();
+//            System.out.println("Calculated Price: " + item.calculatePrice());
+//            item.prepare();
+//            System.out.println("-------------------------");
+//        }
 
-        for (FoodItem item : order){
-            item.displayDetails();
-            System.out.println("Calculated Price: " + item.calculatePrice());
-            item.prepare();
+
+        Vehicle[] vehicles = new Vehicle[3];
+        vehicles[0] = new Car(101, "Toyota", 2000, 5, true);
+        vehicles[1] = new Bike(102, "Honda", 800, 150, true);
+        vehicles[2] = new Truck(103, "Tata", 5000, 5000, 6);
+        int days = 3;
+        for (Vehicle vehicle: vehicles){
+            System.out.println("Brand: " + vehicle.brand);
+            System.out.println("Rent for " + days + " days: " + vehicle.calculateRent(days));
+            vehicle.start();
+            vehicle.stop();
             System.out.println("-------------------------");
         }
     }
