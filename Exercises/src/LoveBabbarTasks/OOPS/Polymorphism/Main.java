@@ -25,14 +25,28 @@ public class Main {
 //        }
 
 
-        Notification[] notifications = new Notification[4];
-        notifications[0] = new EmailNotification("Hello Rahul", "Rahul", "Welcome Email");
-        notifications[1] = new SMSNotification("Your OTP is 1234", "Aman", 9876543210l);
-        notifications[2] = new PushNotification("You have a new message", "Priya", "DEVICE123");
-        notifications[3] = new WhatsappNotification("Your order has been shipped", "Rohit", 9876543210l);
+//        Notification[] notifications = new Notification[4];
+//        notifications[0] = new EmailNotification("Hello Rahul", "Rahul", "Welcome Email");
+//        notifications[1] = new SMSNotification("Your OTP is 1234", "Aman", 9876543210l);
+//        notifications[2] = new PushNotification("You have a new message", "Priya", "DEVICE123");
+//        notifications[3] = new WhatsappNotification("Your order has been shipped", "Rohit", 9876543210l);
+//
+//        for (Notification notification : notifications){
+//            notification.send();
+//            System.out.println("-------------------------");
+//        }
 
-        for (Notification notification : notifications){
-            notification.send();
+
+        FoodItem[] order = new FoodItem[4];
+        order[0] = new Pizza("Farmhouse Pizza", 300, 2, "Large", "Extra Cheese");
+        order[1] = new Burger("Chicken Burger", 200, 1, "Chicken", true);
+        order[2] = new Biryani("Chicken Biryani", 250, 2, "Chicken", "Large");
+        order[3] = new Dessert("Ice Cream", 100, 2, "Vanilla", true);
+
+        for (FoodItem item : order){
+            item.displayDetails();
+            System.out.println("Calculated Price: " + item.calculatePrice());
+            item.prepare();
             System.out.println("-------------------------");
         }
     }
