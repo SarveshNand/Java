@@ -76,14 +76,29 @@ public class Main {
 //        }
 
 
-        HealthCareProfessional[] professionals = new HealthCareProfessional[4];
-        professionals[0] = new Doctor("Rahul", 101, "Cardiology", "Cardiologist");
-        professionals[1] = new Nurse("Priya", 102, "Emergency", "Night");
-        professionals[2] = new Surgeon("Aman", 103, "Surgery", "Orthopedic Surgeon", 50);
-        professionals[3] = new Physiotherapist("Neha", 104, "Physiotherapy", "Sports");
-        for (HealthCareProfessional professional: professionals){
-            professional.displayDetails();
-            professional.work();
+//        HealthCareProfessional[] professionals = new HealthCareProfessional[4];
+//        professionals[0] = new Doctor("Rahul", 101, "Cardiology", "Cardiologist");
+//        professionals[1] = new Nurse("Priya", 102, "Emergency", "Night");
+//        professionals[2] = new Surgeon("Aman", 103, "Surgery", "Orthopedic Surgeon", 50);
+//        professionals[3] = new Physiotherapist("Neha", 104, "Physiotherapy", "Sports");
+//        for (HealthCareProfessional professional: professionals){
+//            professional.displayDetails();
+//            professional.work();
+//            System.out.println("-------------------------");
+//        }
+
+
+        Product[] products = new Product[4];
+        products[0] = new Electronics(101, "Laptop", 50000, 2.5, "Dell", 24);
+        products[1] = new Clothing(102, "T-Shirt", 2000, 0.5, "L", "Cotton");
+        products[2] = new Food(103, "Biryani", 500, 1.0, "2026/08/10", true);
+        products[3] = new Book(104, "Java Programming", 1000, 0.8, "James Gosling", 500);
+        for (Product product: products){
+            System.out.println("Product: " + product.name);
+            System.out.println("Discount: ₹" + product.calculateDiscount());
+            System.out.println("Tax: ₹" + product.calculateTax());
+            System.out.println("Shipping: ₹" + product.calculateShippingCost());
+            System.out.println("Return Policy: " + product.getReturnPolicy());
             System.out.println("-------------------------");
         }
     }
