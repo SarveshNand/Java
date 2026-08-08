@@ -65,13 +65,25 @@ public class Main {
 //        }
 
 
-        BankAccount[] accounts = new BankAccount[3];
-        accounts[0] = new SavingsAccount(1001, "Rahul", 50000, 5);
-        accounts[1] = new CurrentAccount(1002, "Aman", 30000, 10000);
-        accounts[2] = new SalaryAccount(1003, "Priya", 40000, "Google");
-        for (BankAccount account: accounts){
-            System.out.println("Balance: " + account.displayBalance());
-            System.out.println("Interest: " + account.calculateInterest());
+//        BankAccount[] accounts = new BankAccount[3];
+//        accounts[0] = new SavingsAccount(1001, "Rahul", 50000, 5);
+//        accounts[1] = new CurrentAccount(1002, "Aman", 30000, 10000);
+//        accounts[2] = new SalaryAccount(1003, "Priya", 40000, "Google");
+//        for (BankAccount account: accounts){
+//            System.out.println("Balance: " + account.displayBalance());
+//            System.out.println("Interest: " + account.calculateInterest());
+//            System.out.println("-------------------------");
+//        }
+
+
+        HealthCareProfessional[] professionals = new HealthCareProfessional[4];
+        professionals[0] = new Doctor("Rahul", 101, "Cardiology", "Cardiologist");
+        professionals[1] = new Nurse("Priya", 102, "Emergency", "Night");
+        professionals[2] = new Surgeon("Aman", 103, "Surgery", "Orthopedic Surgeon", 50);
+        professionals[3] = new Physiotherapist("Neha", 104, "Physiotherapy", "Sports");
+        for (HealthCareProfessional professional: professionals){
+            professional.displayDetails();
+            professional.work();
             System.out.println("-------------------------");
         }
     }
