@@ -63,55 +63,69 @@ public class Main {
 //        electricCar.stop();
 
 
-        Customer customer = new Customer("Rahul", 9876543210L, "Delhi");
-        DeliveryPartner partner = new DeliveryPartner("Amit", 9876543211L, 1234);
-        RestaurantOwner owner = new RestaurantOwner("Rohit", 9876543212L, "Pizza House");
-        Admin admin = new Admin("Admin", 9876543213L, 101);
+//        Customer customer = new Customer("Rahul", 9876543210L, "Delhi");
+//        DeliveryPartner partner = new DeliveryPartner("Amit", 9876543211L, 1234);
+//        RestaurantOwner owner = new RestaurantOwner("Rohit", 9876543212L, "Pizza House");
+//        Admin admin = new Admin("Admin", 9876543213L, 101);
+//
+//        System.out.println("===== CUSTOMER =====");
+//        customer.login();
+//        customer.placeOrder();
+//        customer.trackOrder();
+//        customer.cancelOrder();
+//        customer.logout();
+//
+//        System.out.println("\n===== DELIVERY PARTNER =====");
+//        partner.login();
+//        partner.acceptDelivery();
+//        partner.pickUpOrder();
+//        partner.deliverOrder();
+//        partner.logout();
+//
+//        System.out.println("\n===== RESTAURANT OWNER =====");
+//        owner.login();
+//        owner.addFoodItem();
+//        owner.removeFoodItem();
+//        owner.updateMenu();
+//        owner.logout();
+//
+//        System.out.println("\n===== ADMIN =====");
+//        admin.login();
+//        admin.manageUsers();
+//        admin.manageOrders();
+//        admin.blockUsers();
+//        admin.logout();
+//
+//        FoodOrder foodOrder = new FoodOrder(101, 599.50, "Pizza House");
+//        GroceryOrder groceryOrder = new GroceryOrder(102, 1299.00, "Reliance Fresh");
+//
+//        System.out.println("\n===== FOOD ORDER =====");
+//        foodOrder.placeOrder();
+//        foodOrder.trackOrder();
+//        foodOrder.calculateDeliveryTime();
+//        foodOrder.addFoodItem();
+//        foodOrder.cancelOrder();
+//
+//        System.out.println("\n===== GROCERY ORDER =====");
+//        groceryOrder.placeOrder();
+//        groceryOrder.trackOrder();
+//        groceryOrder.calculateDeliveryTime();
+//        groceryOrder.substituteItem();
+//        groceryOrder.handleOutOfStock();
+//        groceryOrder.cancelOrder();
 
-        System.out.println("===== CUSTOMER =====");
-        customer.login();
-        customer.placeOrder();
-        customer.trackOrder();
-        customer.cancelOrder();
-        customer.logout();
 
-        System.out.println("\n===== DELIVERY PARTNER =====");
-        partner.login();
-        partner.acceptDelivery();
-        partner.pickUpOrder();
-        partner.deliverOrder();
-        partner.logout();
-
-        System.out.println("\n===== RESTAURANT OWNER =====");
-        owner.login();
-        owner.addFoodItem();
-        owner.removeFoodItem();
-        owner.updateMenu();
-        owner.logout();
-
-        System.out.println("\n===== ADMIN =====");
-        admin.login();
-        admin.manageUsers();
-        admin.manageOrders();
-        admin.blockUsers();
-        admin.logout();
-
-        FoodOrder foodOrder = new FoodOrder(101, 599.50, "Pizza House");
-        GroceryOrder groceryOrder = new GroceryOrder(102, 1299.00, "Reliance Fresh");
-
-        System.out.println("\n===== FOOD ORDER =====");
-        foodOrder.placeOrder();
-        foodOrder.trackOrder();
-        foodOrder.calculateDeliveryTime();
-        foodOrder.addFoodItem();
-        foodOrder.cancelOrder();
-
-        System.out.println("\n===== GROCERY ORDER =====");
-        groceryOrder.placeOrder();
-        groceryOrder.trackOrder();
-        groceryOrder.calculateDeliveryTime();
-        groceryOrder.substituteItem();
-        groceryOrder.handleOutOfStock();
-        groceryOrder.cancelOrder();
+        EmailNotification email = new EmailNotification("rahul@gmail.com", "Order Confirmed", "Your order has been confirmed.");
+        SMSNotification sms = new SMSNotification(9876543210l, "Your order has been shipped.");
+        WhatsAppNotification whatsapp = new WhatsAppNotification(9876543210l, "Your delivery partner is on the way.");
+        PushNotification push = new PushNotification("DEVICE123", "Order Update", "Your order is arriving soon.");
+        
+        email.send();
+        System.out.println();
+        sms.send();
+        System.out.println();
+        whatsapp.send();
+        System.out.println();
+        push.send();
     }
 }
