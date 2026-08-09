@@ -154,25 +154,77 @@ public class Main {
 //        System.out.println("Shipping: " + sofa.calculateShippingCost());
 
 
-        SavingsAccount savings = new SavingsAccount("SA101", "Rahul", 10000, 5);
-        CurrentAccount current = new CurrentAccount("CA101", "Amit", 5000, 10000);
-        SalaryAccount salary = new SalaryAccount("SAL101", "Rohit", 30000);
+//        SavingsAccount savings = new SavingsAccount("SA101", "Rahul", 10000, 5);
+//        CurrentAccount current = new CurrentAccount("CA101", "Amit", 5000, 10000);
+//        SalaryAccount salary = new SalaryAccount("SAL101", "Rohit", 30000);
+//
+//        System.out.println("===== SAVINGS ACCOUNT =====");
+//        savings.deposit(2000);
+//        savings.withdraw(3000);
+//        savings.displayBalance();
+//        System.out.println("Interest: " + savings.calculateInterest());
+//
+//        System.out.println("\n===== CURRENT ACCOUNT =====");
+//        current.deposit(5000);
+//        current.withdraw(15000);
+//        current.displayBalance();
+//        System.out.println("Overdraft Limit: " + current.getOverdraftLimit());
+//
+//        System.out.println("\n===== SALARY ACCOUNT =====");
+//        salary.creditSalary(50000);
+//        salary.withdraw(10000);
+//        salary.displayBalance();
 
-        System.out.println("===== SAVINGS ACCOUNT =====");
-        savings.deposit(2000);
-        savings.withdraw(3000);
-        savings.displayBalance();
-        System.out.println("Interest: " + savings.calculateInterest());
 
-        System.out.println("\n===== CURRENT ACCOUNT =====");
-        current.deposit(5000);
-        current.withdraw(15000);
-        current.displayBalance();
-        System.out.println("Overdraft Limit: " + current.getOverdraftLimit());
+        DeliveryVehicle cycle = new Cycle("CYC101", "Hero", 20);
+        DeliveryVehicle scooter = new Scooter("SCO101", "Honda", 30);
+        DeliveryVehicle hatchback = new Hatchback("HAT101", "Maruti", 50);
+        DeliveryVehicle van = new Van("VAN101", "Tata", 80);
 
-        System.out.println("\n===== SALARY ACCOUNT =====");
-        salary.creditSalary(50000);
-        salary.withdraw(10000);
-        salary.displayBalance();
+        System.out.println("===== CYCLE =====");
+        cycle.displayDetails();
+        System.out.println("Charge for 10 km: ₹" + cycle.computeCharge(10));
+        cycle.beginDelivery();
+        cycle.endDelivery();
+
+        System.out.println("\n===== SCOOTER =====");
+        scooter.displayDetails();
+        System.out.println("Charge for 10 km: ₹" + scooter.computeCharge(10));
+        scooter.beginDelivery();
+        scooter.endDelivery();
+
+        System.out.println("\n===== HATCHBACK =====");
+        hatchback.displayDetails();
+        System.out.println("Charge for 10 km: ₹" + hatchback.computeCharge(10));
+
+        System.out.println("\n===== VAN =====");
+        van.displayDetails();
+        System.out.println("Charge for 10 km: ₹" + van.computeCharge(10));
+
+        System.out.println("\n===== GPS TEST =====");
+        LocationTrackable tracker = new Scooter("SCO102", "TVS", 40);
+        tracker.getCurrentLocation();
+        tracker.updateLocation();
+
+        System.out.println("\n===== PAYMENT TEST =====");
+        PaymentService payment = new PaymentService();
+        payment.processTransaction(250);
+
+        System.out.println("\n===== CUSTOMER TEST =====");
+        Client client = new Client("Rahul", 9876543210L, "Delhi");
+        client.login();
+        client.placeOrder();
+        client.trackDelivery();
+        client.cancelOrder();
+        client.logout();
+
+        System.out.println("\n===== DELIVERY PARTNER TEST =====");
+        DeliveryVehicle deliveryVehicle = new Scooter("DL01AB1234", "Honda", 30);
+        DeliveryMediator partner = new DeliveryMediator("Amit", 9876501234L, deliveryVehicle);
+        partner.login();
+        partner.acceptDelivery();
+        partner.startDelivery();
+        partner.completeDelivery();
+        partner.logout();
     }
 }
