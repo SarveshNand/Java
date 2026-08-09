@@ -115,17 +115,42 @@ public class Main {
 //        groceryOrder.cancelOrder();
 
 
-        EmailNotification email = new EmailNotification("rahul@gmail.com", "Order Confirmed", "Your order has been confirmed.");
-        SMSNotification sms = new SMSNotification(9876543210l, "Your order has been shipped.");
-        WhatsAppNotification whatsapp = new WhatsAppNotification(9876543210l, "Your delivery partner is on the way.");
-        PushNotification push = new PushNotification("DEVICE123", "Order Update", "Your order is arriving soon.");
-        
-        email.send();
-        System.out.println();
-        sms.send();
-        System.out.println();
-        whatsapp.send();
-        System.out.println();
-        push.send();
+//        EmailNotification email = new EmailNotification("rahul@gmail.com", "Order Confirmed", "Your order has been confirmed.");
+//        SMSNotification sms = new SMSNotification(9876543210l, "Your order has been shipped.");
+//        WhatsAppNotification whatsapp = new WhatsAppNotification(9876543210l, "Your delivery partner is on the way.");
+//        PushNotification push = new PushNotification("DEVICE123", "Order Update", "Your order is arriving soon.");
+//
+//        email.send();
+//        System.out.println();
+//        sms.send();
+//        System.out.println();
+//        whatsapp.send();
+//        System.out.println();
+//        push.send();
+
+
+        Electronics laptop = new Electronics(101, "Laptop", 80000, 2);
+        Clothing shirt = new Clothing(102, "T-Shirt", 1500, 5);
+        Grocery rice = new Grocery(103, "Rice Bag", 1200, 10);
+        Furniture sofa = new Furniture(104, "Sofa", 50000, 1);
+
+        System.out.println("===== ELECTRONICS =====");
+        laptop.displayDetails();
+        System.out.println("Discount: " + laptop.calculateDiscount());
+        System.out.println("Shipping: " + laptop.calculateShippingCost());
+
+        System.out.println("\n===== CLOTHING =====");
+        shirt.displayDetails();
+        System.out.println("Discount: " + shirt.calculateDiscount());
+        System.out.println("Shipping: " + shirt.calculateShippingCost());
+
+        System.out.println("\n===== GROCERY =====");
+        rice.displayDetails();
+        System.out.println("Discount: " + rice.calculateDiscount());
+        System.out.println("Shipping: " + rice.calculateShippingCost());
+
+        System.out.println("\n===== FURNITURE =====");
+        sofa.displayDetails();
+        System.out.println("Shipping: " + sofa.calculateShippingCost());
     }
 }
