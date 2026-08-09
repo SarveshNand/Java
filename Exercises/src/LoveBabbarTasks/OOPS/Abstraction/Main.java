@@ -1,6 +1,7 @@
 package LoveBabbarTasks.OOPS.Abstraction;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args){
@@ -176,55 +177,198 @@ public class Main {
 //        salary.displayBalance();
 
 
-        DeliveryVehicle cycle = new Cycle("CYC101", "Hero", 20);
-        DeliveryVehicle scooter = new Scooter("SCO101", "Honda", 30);
-        DeliveryVehicle hatchback = new Hatchback("HAT101", "Maruti", 50);
-        DeliveryVehicle van = new Van("VAN101", "Tata", 80);
+//        DeliveryVehicle cycle = new Cycle("CYC101", "Hero", 20);
+//        DeliveryVehicle scooter = new Scooter("SCO101", "Honda", 30);
+//        DeliveryVehicle hatchback = new Hatchback("HAT101", "Maruti", 50);
+//        DeliveryVehicle van = new Van("VAN101", "Tata", 80);
+//
+//        System.out.println("===== CYCLE =====");
+//        cycle.displayDetails();
+//        System.out.println("Charge for 10 km: ₹" + cycle.computeCharge(10));
+//        cycle.beginDelivery();
+//        cycle.endDelivery();
+//
+//        System.out.println("\n===== SCOOTER =====");
+//        scooter.displayDetails();
+//        System.out.println("Charge for 10 km: ₹" + scooter.computeCharge(10));
+//        scooter.beginDelivery();
+//        scooter.endDelivery();
+//
+//        System.out.println("\n===== HATCHBACK =====");
+//        hatchback.displayDetails();
+//        System.out.println("Charge for 10 km: ₹" + hatchback.computeCharge(10));
+//
+//        System.out.println("\n===== VAN =====");
+//        van.displayDetails();
+//        System.out.println("Charge for 10 km: ₹" + van.computeCharge(10));
+//
+//        System.out.println("\n===== GPS TEST =====");
+//        LocationTrackable tracker = new Scooter("SCO102", "TVS", 40);
+//        tracker.getCurrentLocation();
+//        tracker.updateLocation();
+//
+//        System.out.println("\n===== PAYMENT TEST =====");
+//        PaymentService payment = new PaymentService();
+//        payment.processTransaction(250);
+//
+//        System.out.println("\n===== CUSTOMER TEST =====");
+//        Client client = new Client("Rahul", 9876543210L, "Delhi");
+//        client.login();
+//        client.placeOrder();
+//        client.trackDelivery();
+//        client.cancelOrder();
+//        client.logout();
+//
+//        System.out.println("\n===== DELIVERY PARTNER TEST =====");
+//        DeliveryVehicle deliveryVehicle = new Scooter("DL01AB1234", "Honda", 30);
+//        DeliveryMediator partner = new DeliveryMediator("Amit", 9876501234L, deliveryVehicle);
+//        partner.login();
+//        partner.acceptDelivery();
+//        partner.startDelivery();
+//        partner.completeDelivery();
+//        partner.logout();
 
-        System.out.println("===== CYCLE =====");
-        cycle.displayDetails();
-        System.out.println("Charge for 10 km: ₹" + cycle.computeCharge(10));
-        cycle.beginDelivery();
-        cycle.endDelivery();
+        System.out.println("\n===== PEOPLE =====");
+        Passenger passenger = new Passenger("Rahul", 25, 9876543210L, "rahul@gmail.com", "P123456");
+        Pilot pilot = new Pilot("Amit", 40, 9876500000L, "amit@airline.com", "LIC123");
+        CabinCrew crew = new CabinCrew("Priya", 28, 9876511111L, "priya@airline.com");
+        AirportStaff staff = new AirportStaff("Ravi", 35, 9876522222L, "ravi@airport.com");
 
-        System.out.println("\n===== SCOOTER =====");
-        scooter.displayDetails();
-        System.out.println("Charge for 10 km: ₹" + scooter.computeCharge(10));
-        scooter.beginDelivery();
-        scooter.endDelivery();
+        passenger.login();
+        passenger.bookFlight();
 
-        System.out.println("\n===== HATCHBACK =====");
-        hatchback.displayDetails();
-        System.out.println("Charge for 10 km: ₹" + hatchback.computeCharge(10));
+        pilot.login();
+        pilot.performPreFlightCheck();
+        pilot.flyAircraft();
 
-        System.out.println("\n===== VAN =====");
-        van.displayDetails();
-        System.out.println("Charge for 10 km: ₹" + van.computeCharge(10));
+        crew.login();
+        crew.servePassengers();
 
-        System.out.println("\n===== GPS TEST =====");
-        LocationTrackable tracker = new Scooter("SCO102", "TVS", 40);
-        tracker.getCurrentLocation();
-        tracker.updateLocation();
+        staff.login();
+        staff.verifyDocuments();
 
-        System.out.println("\n===== PAYMENT TEST =====");
-        PaymentService payment = new PaymentService();
-        payment.processTransaction(250);
+        System.out.println("\n===== FLIGHTS =====");
+        Flight domesticFlight = new DomesticFlight("AI101", "Delhi", "Mumbai", LocalDateTime.of(2026, 8, 10, 10, 0), LocalDateTime.of(2026, 8, 10, 12, 30));
+        Flight internationalFlight = new InternationalFlight("AI202", "Delhi", "London", LocalDateTime.of(2026, 8, 10, 18, 0), LocalDateTime.of(2026, 8, 11, 6, 0), 5000);
+        Flight cargoFlight = new CargoFlight("CARGO301", "Delhi", "Dubai", LocalDateTime.of(2026, 8, 10, 20, 0), LocalDateTime.of(2026, 8, 11, 2, 0), 1000);
 
-        System.out.println("\n===== CUSTOMER TEST =====");
-        Client client = new Client("Rahul", 9876543210L, "Delhi");
-        client.login();
-        client.placeOrder();
-        client.trackDelivery();
-        client.cancelOrder();
-        client.logout();
+        System.out.println("Domestic price: ₹" + domesticFlight.calculatePrice());
+        System.out.println("International price: ₹" + internationalFlight.calculatePrice());
+        System.out.println("Cargo price: ₹" + cargoFlight.calculatePrice());
+        System.out.println("Domestic duration: " + domesticFlight.calculateDuration() + " hours");
 
-        System.out.println("\n===== DELIVERY PARTNER TEST =====");
-        DeliveryVehicle deliveryVehicle = new Scooter("DL01AB1234", "Honda", 30);
-        DeliveryMediator partner = new DeliveryMediator("Amit", 9876501234L, deliveryVehicle);
-        partner.login();
-        partner.acceptDelivery();
-        partner.startDelivery();
-        partner.completeDelivery();
-        partner.logout();
+        domesticFlight.checkAvailability();
+        domesticFlight.schedule();
+
+        System.out.println("Current location: " + domesticFlight.getCurrentLocation());
+
+        System.out.println("\n===== AIRCRAFT =====");
+        PassengerAircraft boeing737 = new PassengerAircraft("AC001", "Boeing 737", 180, 26000, 10000);
+        CargoAircraft boeing777 = new CargoAircraft("AC002", "Boeing 777 Cargo", 0, 180000, 50000);
+        PrivateJet jet = new PrivateJet("AC003", "Gulfstream G650", 20, 48000, 20000);
+
+        boeing737.startEngine();
+        boeing737.boardPassengers();
+        boeing737.takeOff();
+        boeing737.land();
+        boeing737.refuel(5000);
+
+        boeing777.startEngine();
+        boeing777.loadCargo();
+
+        jet.startEngine();
+        jet.boardPassengers();
+
+        System.out.println("\n===== SEATS =====");
+        Seat economySeat = new EconomySeat("12A", 12);
+        Seat businessSeat = new BusinessSeat("4A", 4);
+        Seat firstClassSeat = new FirstClassSeat("1A", 1);
+        EmergencyExitSeat emergencySeat = new EmergencyExitSeat("15A", 15);
+
+        System.out.println("Economy seat price: ₹" + economySeat.calculateSeatPrice());
+        System.out.println("Business seat price: ₹" + businessSeat.calculateSeatPrice());
+        System.out.println("First class seat price: ₹" + firstClassSeat.calculateSeatPrice());
+
+        economySeat.reserve();
+        economySeat.release();
+
+        emergencySeat.checkWeightLimit();
+        emergencySeat.reserve();
+
+        System.out.println("\n===== BOOKINGS =====");
+        Booking economyBooking = new EconomyBooking("B001", passenger, domesticFlight, new EconomySeat("20A", 20));
+        Booking businessBooking = new BusinessBooking("B002", passenger, domesticFlight, new BusinessSeat("5A", 5));
+        Booking firstBooking = new FirstClassBooking("B003", passenger, internationalFlight, new FirstClassSeat("1A", 1));
+
+        economyBooking.displayBooking();
+        economyBooking.confirm();
+        economyBooking.generateTicket();
+        System.out.println("Economy refund: ₹" + ((Refundable) economyBooking).calculateRefund());
+
+        businessBooking.displayBooking();
+        firstBooking.displayBooking();
+
+        System.out.println("\n===== PAYMENTS =====");
+        Payments cardPayment = new PaymentViaCard();
+        Payments upiPayment = new PaymentViaUPI();
+        Payments netBankingPayment = new PaymentViaNetBanking();
+        Payments walletPayment = new PaymentViaWallet();
+
+        cardPayment.pay(7500);
+        System.out.println("Card status: " + cardPayment.checkStatus());
+
+        cardPayment.refund(2000);
+        upiPayment.pay(5000);
+        System.out.println("UPI status: " + upiPayment.checkStatus());
+
+        netBankingPayment.pay(10000);
+        walletPayment.pay(1500);
+
+        System.out.println("\n===== BAGGAGE =====");
+        Baggage cabinBaggage = new CabinBaggage("BG001", 6, passenger);
+        Baggage checkedBaggage = new CheckedBaggage("BG002", 20, passenger);
+        Baggage oversizedBaggage = new OversizedBaggage("BG003", 35, passenger);
+
+        cabinBaggage.generateTag();
+        cabinBaggage.displayDetails();
+
+        checkedBaggage.generateTag();
+        checkedBaggage.displayDetails();
+
+        oversizedBaggage.generateTag();
+        oversizedBaggage.displayDetails();
+
+        System.out.println("\n===== INTERFACE POLYMORPHISM =====");
+        Trackable trackableFlight = domesticFlight;
+        System.out.println(trackableFlight.getCurrentLocation());
+
+        Refundable refundableBooking = new BusinessBooking("B004", passenger, domesticFlight, new BusinessSeat("6A", 6));
+        System.out.println("Refund amount: ₹" + refundableBooking.calculateRefund());
+
+        PassengerCarrier passengerCarrier = boeing737;
+        passengerCarrier.boardPassengers();
+
+        CargoCarrier cargoCarrier = boeing777;
+        cargoCarrier.loadCargo();
+
+        Refuelable refuelable = boeing737;
+        refuelable.refuel(2000);
+
+        WeightRestricted weightRestricted = new CabinBaggage("BG004", 5, passenger);
+        System.out.println("Within weight limit: " + weightRestricted.checkWeightLimit());
+
+        System.out.println("\n===== COMPLETE BOOKING FLOW =====");
+        Passenger newPassenger = new Passenger("Neha", 27, 9999999999L, "neha@gmail.com", "P987654");
+        Flight flight = new DomesticFlight("AI505", "Bangalore", "Delhi", LocalDateTime.of(2026, 8, 15, 9, 0), LocalDateTime.of(2026, 8, 15, 12, 0));
+
+        Seat seat = new EconomySeat("18B", 18);
+        Booking booking = new EconomyBooking("BOOK505", newPassenger, flight, seat);
+        System.out.println("Total fare: ₹" + booking.calculateFare());
+        booking.confirm();
+
+        Payments payment = new PaymentViaUPI();
+        payment.pay(booking.calculateFare());
+        booking.generateTicket();
+        System.out.println("Payment status: " + payment.checkStatus());
     }
 }
