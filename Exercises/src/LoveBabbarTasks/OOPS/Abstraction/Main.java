@@ -23,43 +23,95 @@ public class Main {
 //        payment4.checkStatus();
 
 
-        Car car = new Car("Toyota", "Camry", 50, 80);
-        System.out.println("===== CAR =====");
-        car.start();
-        car.accelerate();
-        car.brake();
-        car.openDoors();
-        car.useAC();
-        car.stop();
+//        Car car = new Car("Toyota", "Camry", 50, 80);
+//        System.out.println("===== CAR =====");
+//        car.start();
+//        car.accelerate();
+//        car.brake();
+//        car.openDoors();
+//        car.useAC();
+//        car.stop();
+//
+//        Bike bike = new Bike("Honda", "CBR", 40, 60);
+//        System.out.println("\n===== BIKE =====");
+//        bike.start();
+//        bike.accelerate();
+//        bike.brake();
+//        bike.kickStart();
+//        bike.useStand();
+//        bike.stop();
+//
+//        Bus bus = new Bus("Volvo", "9400", 30, 90);
+//        System.out.println("\n===== BUS =====");
+//        bus.start();
+//        bus.accelerate();
+//        bus.brake();
+//        bus.openPassengerDoors();
+//        bus.announceStop();
+//        bus.stop();
+//
+//        ElectricCar electricCar =
+//                new ElectricCar("Tesla", "Model 3", 60, 0);
+//        System.out.println("\n===== ELECTRIC CAR =====");
+//        electricCar.start();
+//        electricCar.accelerate();
+//        electricCar.brake();
+//        electricCar.regenerativeBrake();
+//        electricCar.charge();
+//        System.out.println("Battery: "
+//                + electricCar.getBatteryLevel() + "%");
+//        electricCar.stop();
 
-        Bike bike = new Bike("Honda", "CBR", 40, 60);
-        System.out.println("\n===== BIKE =====");
-        bike.start();
-        bike.accelerate();
-        bike.brake();
-        bike.kickStart();
-        bike.useStand();
-        bike.stop();
 
-        Bus bus = new Bus("Volvo", "9400", 30, 90);
-        System.out.println("\n===== BUS =====");
-        bus.start();
-        bus.accelerate();
-        bus.brake();
-        bus.openPassengerDoors();
-        bus.announceStop();
-        bus.stop();
+        Customer customer = new Customer("Rahul", 9876543210L, "Delhi");
+        DeliveryPartner partner = new DeliveryPartner("Amit", 9876543211L, 1234);
+        RestaurantOwner owner = new RestaurantOwner("Rohit", 9876543212L, "Pizza House");
+        Admin admin = new Admin("Admin", 9876543213L, 101);
 
-        ElectricCar electricCar =
-                new ElectricCar("Tesla", "Model 3", 60, 0);
-        System.out.println("\n===== ELECTRIC CAR =====");
-        electricCar.start();
-        electricCar.accelerate();
-        electricCar.brake();
-        electricCar.regenerativeBrake();
-        electricCar.charge();
-        System.out.println("Battery: "
-                + electricCar.getBatteryLevel() + "%");
-        electricCar.stop();
+        System.out.println("===== CUSTOMER =====");
+        customer.login();
+        customer.placeOrder();
+        customer.trackOrder();
+        customer.cancelOrder();
+        customer.logout();
+
+        System.out.println("\n===== DELIVERY PARTNER =====");
+        partner.login();
+        partner.acceptDelivery();
+        partner.pickUpOrder();
+        partner.deliverOrder();
+        partner.logout();
+
+        System.out.println("\n===== RESTAURANT OWNER =====");
+        owner.login();
+        owner.addFoodItem();
+        owner.removeFoodItem();
+        owner.updateMenu();
+        owner.logout();
+
+        System.out.println("\n===== ADMIN =====");
+        admin.login();
+        admin.manageUsers();
+        admin.manageOrders();
+        admin.blockUsers();
+        admin.logout();
+
+        FoodOrder foodOrder = new FoodOrder(101, 599.50, "Pizza House");
+        GroceryOrder groceryOrder = new GroceryOrder(102, 1299.00, "Reliance Fresh");
+
+        System.out.println("\n===== FOOD ORDER =====");
+        foodOrder.placeOrder();
+        foodOrder.trackOrder();
+        foodOrder.calculateDeliveryTime();
+        foodOrder.addFoodItem();
+        foodOrder.cancelOrder();
+
+        System.out.println("\n===== GROCERY ORDER =====");
+        groceryOrder.placeOrder();
+        groceryOrder.trackOrder();
+        groceryOrder.calculateDeliveryTime();
+        groceryOrder.substituteItem();
+        groceryOrder.handleOutOfStock();
+        groceryOrder.cancelOrder();
     }
 }
