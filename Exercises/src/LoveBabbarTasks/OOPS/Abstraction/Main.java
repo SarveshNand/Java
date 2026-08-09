@@ -129,28 +129,50 @@ public class Main {
 //        push.send();
 
 
-        Electronics laptop = new Electronics(101, "Laptop", 80000, 2);
-        Clothing shirt = new Clothing(102, "T-Shirt", 1500, 5);
-        Grocery rice = new Grocery(103, "Rice Bag", 1200, 10);
-        Furniture sofa = new Furniture(104, "Sofa", 50000, 1);
+//        Electronics laptop = new Electronics(101, "Laptop", 80000, 2);
+//        Clothing shirt = new Clothing(102, "T-Shirt", 1500, 5);
+//        Grocery rice = new Grocery(103, "Rice Bag", 1200, 10);
+//        Furniture sofa = new Furniture(104, "Sofa", 50000, 1);
+//
+//        System.out.println("===== ELECTRONICS =====");
+//        laptop.displayDetails();
+//        System.out.println("Discount: " + laptop.calculateDiscount());
+//        System.out.println("Shipping: " + laptop.calculateShippingCost());
+//
+//        System.out.println("\n===== CLOTHING =====");
+//        shirt.displayDetails();
+//        System.out.println("Discount: " + shirt.calculateDiscount());
+//        System.out.println("Shipping: " + shirt.calculateShippingCost());
+//
+//        System.out.println("\n===== GROCERY =====");
+//        rice.displayDetails();
+//        System.out.println("Discount: " + rice.calculateDiscount());
+//        System.out.println("Shipping: " + rice.calculateShippingCost());
+//
+//        System.out.println("\n===== FURNITURE =====");
+//        sofa.displayDetails();
+//        System.out.println("Shipping: " + sofa.calculateShippingCost());
 
-        System.out.println("===== ELECTRONICS =====");
-        laptop.displayDetails();
-        System.out.println("Discount: " + laptop.calculateDiscount());
-        System.out.println("Shipping: " + laptop.calculateShippingCost());
 
-        System.out.println("\n===== CLOTHING =====");
-        shirt.displayDetails();
-        System.out.println("Discount: " + shirt.calculateDiscount());
-        System.out.println("Shipping: " + shirt.calculateShippingCost());
+        SavingsAccount savings = new SavingsAccount("SA101", "Rahul", 10000, 5);
+        CurrentAccount current = new CurrentAccount("CA101", "Amit", 5000, 10000);
+        SalaryAccount salary = new SalaryAccount("SAL101", "Rohit", 30000);
 
-        System.out.println("\n===== GROCERY =====");
-        rice.displayDetails();
-        System.out.println("Discount: " + rice.calculateDiscount());
-        System.out.println("Shipping: " + rice.calculateShippingCost());
+        System.out.println("===== SAVINGS ACCOUNT =====");
+        savings.deposit(2000);
+        savings.withdraw(3000);
+        savings.displayBalance();
+        System.out.println("Interest: " + savings.calculateInterest());
 
-        System.out.println("\n===== FURNITURE =====");
-        sofa.displayDetails();
-        System.out.println("Shipping: " + sofa.calculateShippingCost());
+        System.out.println("\n===== CURRENT ACCOUNT =====");
+        current.deposit(5000);
+        current.withdraw(15000);
+        current.displayBalance();
+        System.out.println("Overdraft Limit: " + current.getOverdraftLimit());
+
+        System.out.println("\n===== SALARY ACCOUNT =====");
+        salary.creditSalary(50000);
+        salary.withdraw(10000);
+        salary.displayBalance();
     }
 }
