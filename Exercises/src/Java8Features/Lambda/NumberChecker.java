@@ -1,4 +1,4 @@
-package Lambda;
+package Java8Features.Lambda;
 
 @FunctionalInterface
 public interface NumberChecker {
